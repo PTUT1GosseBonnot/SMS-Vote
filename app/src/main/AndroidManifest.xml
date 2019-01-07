@@ -17,7 +17,7 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".presentation.ui.activities.VoteCreationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

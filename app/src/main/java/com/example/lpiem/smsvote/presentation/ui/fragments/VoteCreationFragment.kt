@@ -1,6 +1,7 @@
 package com.example.lpiem.smsvote.presentation.ui.fragments
 
 import android.Manifest
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.widget.LinearLayoutManager
@@ -10,6 +11,8 @@ import com.example.lpiem.smsvote.base.BaseFragment
 import com.example.lpiem.smsvote.entity.Response
 import com.example.lpiem.smsvote.presentation.presenter.VoteCreationFragmentPresenter
 import com.example.lpiem.smsvote.presentation.presenter.VoteCretionView
+import com.example.lpiem.smsvote.presentation.ui.activities.VoteCreationActivity
+import com.example.lpiem.smsvote.presentation.ui.activities.VoteSummaryActivity
 import com.example.lpiem.smsvote.presentation.ui.adapter.AnswersAdapter
 import com.example.lpiem.smsvote.utils.PermisionUtil
 import kotlinx.android.synthetic.main.vote_creation_fragment.*
@@ -55,7 +58,8 @@ class VoteCreationFragment : BaseFragment<VoteCreationFragmentPresenter>(), Vote
             if (answers.none { response ->
                     response.response.isNullOrBlank()
                 } && !questionEditText.text.isNullOrBlank()) {
-                TODO("Switch to next activity")
+                val intent = Intent(context, VoteSummaryActivity::class.java)
+                startActivity(intent)
             }
         }
     }

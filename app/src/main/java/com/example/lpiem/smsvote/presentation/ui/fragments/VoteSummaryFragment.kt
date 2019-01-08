@@ -1,15 +1,10 @@
 package com.example.lpiem.smsvote.presentation.ui.fragments
 
-import android.Manifest
 import android.os.Bundle
 import com.example.lpiem.smsvote.R
 import com.example.lpiem.smsvote.base.BaseFragment
-import com.example.lpiem.smsvote.base.BasePresenter
-import com.example.lpiem.smsvote.base.BaseView
-import com.example.lpiem.smsvote.presentation.presenter.VoteCreationFragmentPresenter
 import com.example.lpiem.smsvote.presentation.presenter.VoteSummaryFragmentPresenter
 import com.example.lpiem.smsvote.presentation.presenter.VoteSummaryView
-import com.example.lpiem.smsvote.utils.PermisionUtil
 
 class VoteSummaryFragment: BaseFragment<VoteSummaryFragmentPresenter>(), VoteSummaryView {
 

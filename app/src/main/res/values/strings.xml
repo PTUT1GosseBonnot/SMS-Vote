@@ -11,4 +11,7 @@
     <string name="playIconDescription">Image play</string>
     <string name="stopIconDescription">Image stop</string>
     <string name="question">Question</string>
+    <string name="playBtnClicked">Le bouton play a été cliqué</string>
+    <string name="stopBtnClicked">Le bouton stop a été cliqué</string>
+    <string name="answer">Réponse</string>
 </resources>

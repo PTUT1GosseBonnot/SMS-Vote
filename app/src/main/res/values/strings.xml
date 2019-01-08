@@ -3,4 +3,8 @@
     <string name="missingPermissions">Autorisations manquantes</string>
     <string name="allowAddPermissionsSMS">Nous avons besoin d\’accéder aux SMS de l\’appareil. Vous ne pouvez pas continuer sans...</string>
     <string name="allow">OK</string>
+    <string name="editForm">Editer</string>
+    <string name="playIconDescription">Image play</string>
+    <string name="stopIconDescription">Image stop</string>
+    <string name="question">Question</string>
 </resources>

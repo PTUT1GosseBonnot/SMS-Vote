@@ -13,9 +13,9 @@ class SplashActivity : AppCompatActivity() {
     internal val mRunnable: Runnable = Runnable {
         if (!isFinishing) {
 
-            //val intent = Intent(applicationContext, VoteCreationActivity::class.java)
-            //startActivity(intent)
-            //finish()
+            val intent = Intent(applicationContext, VoteCreationActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 

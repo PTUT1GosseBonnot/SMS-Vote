@@ -6,4 +6,5 @@
     <string name="addAnswerButton">Ajouter une réponse</string>
     <string name="validateButton">Valider</string>
     <string name="typeYourQuestion">Saisissez votre question</string>
+    <string name="typeYourAnswer">Saisissez votre réponse</string>
 </resources>

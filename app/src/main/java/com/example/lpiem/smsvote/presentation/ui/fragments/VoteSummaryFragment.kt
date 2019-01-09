@@ -55,15 +55,7 @@ class VoteSummaryFragment: BaseFragment<VoteSummaryFragmentPresenter>(), VoteSum
             answers.add(Response(answers.size + 1, null))
         }
         val adapter = AnswersAdapter(answers)
-        recyclerViewAnswers.adapter = adapter
-        addAnswerButton.setOnClickListener {
-            if (answers.none { response ->
-                    response.response.isNullOrBlank()
-                }) {
-                answers.add(Response(answers.size + 1, null))
-                adapter.notifyDataSetChanged()
-            }
-        }
+        recyclerViewAnswerSummary.adapter = adapter
 
     }
 

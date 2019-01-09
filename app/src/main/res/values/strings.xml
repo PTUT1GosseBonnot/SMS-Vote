@@ -11,4 +11,5 @@
     <string name="playIconDescription">Image play</string>
     <string name="stopIconDescription">Image stop</string>
     <string name="question">Question</string>
+    <string name="chartDescription">Résultat du vote : </string>
 </resources>

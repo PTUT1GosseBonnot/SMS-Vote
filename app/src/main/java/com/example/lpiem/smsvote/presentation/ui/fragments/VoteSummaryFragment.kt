@@ -1,10 +1,13 @@
 package com.example.lpiem.smsvote.presentation.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import com.example.lpiem.smsvote.R
 import com.example.lpiem.smsvote.base.BaseFragment
 import com.example.lpiem.smsvote.presentation.presenter.VoteSummaryFragmentPresenter
 import com.example.lpiem.smsvote.presentation.presenter.VoteSummaryView
+import com.example.lpiem.smsvote.presentation.ui.activities.ChartActivity
+import kotlinx.android.synthetic.main.vote_summary_fragment.*
 
 class VoteSummaryFragment: BaseFragment<VoteSummaryFragmentPresenter>(), VoteSummaryView {
 
@@ -26,5 +29,10 @@ class VoteSummaryFragment: BaseFragment<VoteSummaryFragmentPresenter>(), VoteSum
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         presenter.attach(this)
+
+        stop_btn.setOnClickListener {
+            var intent: Intent = Intent(context, ChartActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

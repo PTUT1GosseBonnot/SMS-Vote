@@ -29,9 +29,6 @@ class SMSReceiver: BroadcastReceiver() {
 
                     val message = currentMessage.displayMessageBody
 
-                    Log.i("SmsReceiver", "senderNum: $phoneNumber; message: $message")
-
-
                     // Show Alert
                     val duration = Toast.LENGTH_LONG
                     val toast = Toast.makeText(

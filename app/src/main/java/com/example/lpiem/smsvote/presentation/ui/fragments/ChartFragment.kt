@@ -2,35 +2,28 @@ package com.example.lpiem.smsvote.presentation.ui.fragments
 
 import android.graphics.Color
 import android.os.Bundle
-import android.support.constraint.ConstraintLayout
+import android.widget.RelativeLayout
 import com.example.lpiem.smsvote.R
 import com.example.lpiem.smsvote.base.BaseFragment
 import com.example.lpiem.smsvote.presentation.presenter.ChartFragmentPresenter
 import com.example.lpiem.smsvote.presentation.presenter.ChartView
 import com.github.mikephil.charting.charts.PieChart
-import com.github.mikephil.charting.components.Description
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener
-import android.widget.Toast
 import com.github.mikephil.charting.components.Legend
-import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
-import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.utils.ColorTemplate
+import kotlinx.android.synthetic.main.chart_fragment.*
+import java.util.*
 
 
 class ChartFragment: BaseFragment<ChartFragmentPresenter>(), ChartView {
     override val layoutId: Int = R.layout.chart_fragment
     override var presenter: ChartFragmentPresenter = ChartFragmentPresenter()
 
-    private lateinit var pieChart: PieChart
-    private lateinit var mainLayout: ConstraintLayout
-
-    // test data
-    private val yData = floatArrayOf(5f, 10f, 15f, 30f, 40f)
-    private val xData = arrayOf("Sony", "Huawei", "LG", "Apple", "Samsung")
+    private lateinit var mPieChart: PieChart
+    private lateinit var mainLayout: RelativeLayout
 
     override fun displayLoader() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -48,105 +41,76 @@ class ChartFragment: BaseFragment<ChartFragmentPresenter>(), ChartView {
         super.onActivityCreated(savedInstanceState)
         presenter.attach(this)
         mainLayout = activity!!.findViewById(R.id.main)
-        pieChart = PieChart(context)
 
-        //add pie chart to the layout
-        mainLayout.addView(pieChart)
-        mainLayout.setBackgroundColor(Color.GREEN)
+        setupPieChartView()
 
-        //configure pie chart
-        pieChart.setUsePercentValues(true)
-        pieChart.description = getString(R.string.chartDescription) as Description
-
-        //enable/disable hole and configure
-        pieChart.isDrawHoleEnabled = true
-        pieChart.holeRadius = 7.0f
-        pieChart.transparentCircleRadius = 10.0f
-
-        //enable/disable rotation of the chart by touch
-        pieChart.rotationAngle = 0.0f
-        pieChart.isRotationEnabled = false
-
-        // listener on chart value
-        pieChart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
-            override fun onValueSelected(e: Entry?, h: Highlight?) {
-                // display msg when value selected
-                if (e == null)
-                    return
-
-                Toast.makeText(
-                    context,
-                    xData[e.x.toInt()] + " = " + e.toString() + "%", Toast.LENGTH_SHORT
-                ).show()
-            }
-
-            override fun onNothingSelected() {
-
-            }
-        })
-
-        // add data
-        addDataToChart()
-
-        // customize legend
-        val legend: Legend = pieChart.legend
-        legend.position = (Legend.LegendPosition.RIGHT_OF_CHART)
-        legend.xEntrySpace = 7f
-        legend.yEntrySpace = 5f
+        chartTitle.text = getString(R.string.chartDescription) + " test ?"
+        chartTitle.textSize = 20f
 
 
     }
 
-    private fun addDataToChart(){
-        var yValues: ArrayList<PieEntry> = ArrayList()
+    fun setupPieChartView() {
+        mPieChart = activity!!.findViewById(R.id.piechart)
 
-        for(i in 0..yData.size){
-            yValues.add(PieEntry(yData[i],i as Float))
+        mPieChart.setUsePercentValues(false)
+
+        mPieChart.setDrawHoleEnabled(true)
+        mPieChart.setHoleRadius(7f)
+        mPieChart.setTransparentCircleRadius(10f)
+
+        mPieChart.isRotationEnabled = false
+
+        val legend: Legend? = mPieChart.legend
+        legend?.verticalAlignment = Legend.LegendVerticalAlignment.TOP
+        legend?.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
+        legend?.direction = Legend.LegendDirection.LEFT_TO_RIGHT
+        legend?.form = Legend.LegendForm.CIRCLE
+        legend?.isWordWrapEnabled = true
+
+
+        val value = Arrays.asList(1f, 2f, 3f, 9f,15f)
+        val label = Arrays.asList("1", "ehcfjhvecfdehvuyg", "3","4","5","6")
+
+        val entry = ArrayList<PieEntry>()
+        for (i in value.indices) {
+            entry.add(PieEntry(value.get(i), label.get(i)))
+
         }
 
-        var xValues: ArrayList<String> = ArrayList()
 
-        for(i in 0..xData.size){
-            xValues.add(xData[i])
-        }
+        val dataSet = PieDataSet(entry, "")
+        val colors = ArrayList<Int>()
 
-        //create Pie data set
-        var pieDataSet: PieDataSet = PieDataSet(yValues, "Test")
-        pieDataSet.sliceSpace = 3f
-        pieDataSet.selectionShift = 5f
-
-        var colors: ArrayList<Int> = ArrayList()
-
-        for(c in ColorTemplate.VORDIPLOM_COLORS)
+        for (c in ColorTemplate.VORDIPLOM_COLORS)
             colors.add(c)
 
-        for(c in ColorTemplate.JOYFUL_COLORS)
+        for (c in ColorTemplate.JOYFUL_COLORS)
             colors.add(c)
 
-        for(c in ColorTemplate.COLORFUL_COLORS)
+        for (c in ColorTemplate.COLORFUL_COLORS)
             colors.add(c)
 
-        for(c in ColorTemplate.LIBERTY_COLORS)
+        for (c in ColorTemplate.LIBERTY_COLORS)
             colors.add(c)
 
-        for(c in ColorTemplate.PASTEL_COLORS)
+        for (c in ColorTemplate.PASTEL_COLORS)
             colors.add(c)
 
         colors.add(ColorTemplate.getHoloBlue())
-        pieDataSet.colors = colors
+        dataSet.colors = colors
+        dataSet.setDrawValues(true)
 
-        // instantiate pie data object
-        var pieData: PieData = PieData()
-        pieData.dataSet = pieDataSet
+
+        val pieData = PieData(dataSet)
         pieData.setValueFormatter(PercentFormatter())
         pieData.setValueTextSize(10f)
         pieData.setValueTextColor(Color.WHITE)
+        pieData.setValueTextColor(Color.BLACK)
+        dataSet.valueTextColor = Color.BLACK
+        mPieChart.setEntryLabelColor(Color.BLUE)
 
-        pieChart.data = pieData
-
-        pieChart.highlightValue(null)
-
-        pieChart.invalidate()
-
+        mPieChart.data = pieData
     }
+
 }

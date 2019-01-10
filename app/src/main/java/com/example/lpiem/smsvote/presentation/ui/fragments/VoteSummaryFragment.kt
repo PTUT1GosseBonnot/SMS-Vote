@@ -1,5 +1,6 @@
 package com.example.lpiem.smsvote.presentation.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.LinearLayout
@@ -9,6 +10,7 @@ import com.example.lpiem.smsvote.data.entity.Response
 import com.example.lpiem.smsvote.domain.VoteManager
 import com.example.lpiem.smsvote.presentation.presenter.VoteSummaryFragmentPresenter
 import com.example.lpiem.smsvote.presentation.presenter.VoteSummaryView
+import com.example.lpiem.smsvote.presentation.ui.activities.ChartActivity
 import com.example.lpiem.smsvote.presentation.ui.adapter.AnswersSummaryAdapter
 import kotlinx.android.synthetic.main.vote_summary_fragment.*
 
@@ -47,6 +49,8 @@ class VoteSummaryFragment : BaseFragment<VoteSummaryFragmentPresenter>(), VoteSu
 
         stop_btn.setOnClickListener {
             voteManager.stopListen()
+            var intent: Intent = Intent(context, ChartActivity::class.java)
+            startActivity(intent)
         }
 
         question.text = voteManager.vote.question

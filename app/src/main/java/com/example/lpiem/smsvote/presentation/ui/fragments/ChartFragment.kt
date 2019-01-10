@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.RelativeLayout
 import com.example.lpiem.smsvote.R
 import com.example.lpiem.smsvote.base.BaseFragment
+import com.example.lpiem.smsvote.domain.VoteManager
 import com.example.lpiem.smsvote.presentation.presenter.ChartFragmentPresenter
 import com.example.lpiem.smsvote.presentation.presenter.ChartView
 import com.github.mikephil.charting.charts.PieChart
@@ -20,6 +21,7 @@ import java.util.*
 class ChartFragment : BaseFragment<ChartFragmentPresenter>(), ChartView {
     override val layoutId: Int = R.layout.chart_fragment
     override var presenter: ChartFragmentPresenter = ChartFragmentPresenter()
+    val voteManager: VoteManager = VoteManager.instance
 
     private lateinit var mPieChart: PieChart
     private lateinit var mainLayout: RelativeLayout
@@ -43,7 +45,7 @@ class ChartFragment : BaseFragment<ChartFragmentPresenter>(), ChartView {
 
         setupPieChartView()
 
-        chartTitle.text = getString(R.string.chartDescription) + " test ?"
+        chartTitle.text = getString(R.string.chartDescription) + voteManager.vote.question
         chartTitle.textSize = 20f
 
 
@@ -54,9 +56,9 @@ class ChartFragment : BaseFragment<ChartFragmentPresenter>(), ChartView {
 
         mPieChart.setUsePercentValues(false)
 
-        mPieChart.setDrawHoleEnabled(true)
-        mPieChart.setHoleRadius(7f)
-        mPieChart.setTransparentCircleRadius(10f)
+        mPieChart.isDrawHoleEnabled = true
+        mPieChart.holeRadius = 7f
+        mPieChart.transparentCircleRadius = 10f
 
         mPieChart.isRotationEnabled = false
         mPieChart.setDrawSliceText(false)
@@ -68,12 +70,16 @@ class ChartFragment : BaseFragment<ChartFragmentPresenter>(), ChartView {
         legend?.form = Legend.LegendForm.CIRCLE
 
 
-        val value = Arrays.asList(1f, 2f, 3f, 9f, 15f)
-        val label = Arrays.asList("1", "ehcfjhvecfdehvuyg", "3", "4", "5", "6")
+        val values = ArrayList<Float>()
+        val labels = ArrayList<String>()
+        for (response in voteManager.vote.responses) {
+            values.add(response.second.toFloat())
+            labels.add(response.first.response!!)
+        }
 
         val entry = ArrayList<PieEntry>()
-        for (i in value.indices) {
-            entry.add(PieEntry(value.get(i), label.get(i)))
+        for (i in values.indices) {
+            entry.add(PieEntry(values[i], labels[i]))
         }
 
 

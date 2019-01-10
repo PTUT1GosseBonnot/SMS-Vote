@@ -42,20 +42,22 @@ class VoteSummaryFragment: BaseFragment<VoteSummaryFragmentPresenter>(), VoteSum
         }
 
         play_btn.setOnClickListener {
-            Toast.makeText(context, R.string.playBtnClicked,Toast.LENGTH_SHORT).show()
-
+            voteManager.listen()
         }
 
         stop_btn.setOnClickListener {
-            Toast.makeText(context, R.string.stopBtnClicked, Toast.LENGTH_SHORT).show()
+            voteManager.stopListen()
         }
+
+        question.text = voteManager.vote.question
 
         recyclerViewAnswerSummary.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
         for (i in 0 until voteManager.vote.responses.size) {
-            answers.add(Pair(i+1, voteManager.vote.responses[i+1]))
+            answers.add(Pair(i+1, voteManager.vote.responses[i]))
         }
         val adapter = AnswersSummaryAdapter(answers)
         recyclerViewAnswerSummary.adapter = adapter
+        voteManager.attachAdapter(adapter)
 
     }
 

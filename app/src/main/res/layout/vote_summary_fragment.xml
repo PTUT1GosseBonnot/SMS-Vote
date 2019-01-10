@@ -15,10 +15,17 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintTop_toBottomOf="@+id/question"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" android:id="@+id/recyclerViewAnswerSummary"/>
+            app:layout_constraintStart_toStartOf="parent" android:id="@+id/recyclerViewAnswerSummary"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/textViewNumberOfResponse"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textViewNumberOfResponse" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"/>
     <LinearLayout
             android:id="@+id/linearLayout"
             android:orientation="horizontal"

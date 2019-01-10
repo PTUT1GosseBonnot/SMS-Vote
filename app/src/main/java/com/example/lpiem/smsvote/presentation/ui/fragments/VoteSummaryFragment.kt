@@ -49,11 +49,14 @@ class VoteSummaryFragment : BaseFragment<VoteSummaryFragmentPresenter>(), VoteSu
 
         stop_btn.setOnClickListener {
             voteManager.stopListen()
-            var intent: Intent = Intent(context, ChartActivity::class.java)
+            voteManager.detachAdapter()
+            voteManager.detachFragment()
+            val intent = Intent(context, ChartActivity::class.java)
             startActivity(intent)
         }
 
         question.text = voteManager.vote.question
+        textViewNumberOfResponse.text = getString(R.string.numberOfResponse, voteManager.numberOfSmsReceived.toString())
 
         recyclerViewAnswerSummary.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
         for (i in 0 until voteManager.vote.responses.size) {
@@ -62,8 +65,11 @@ class VoteSummaryFragment : BaseFragment<VoteSummaryFragmentPresenter>(), VoteSu
         val adapter = AnswersSummaryAdapter(answers)
         recyclerViewAnswerSummary.adapter = adapter
         voteManager.attachAdapter(adapter)
-
+        voteManager.attachFragment(this)
     }
 
+    fun notifySmsReceived() {
+        textViewNumberOfResponse.text = getString(R.string.numberOfResponse, voteManager.numberOfSmsReceived.toString())
+    }
 
 }

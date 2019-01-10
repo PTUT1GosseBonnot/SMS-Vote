@@ -24,5 +24,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentation.ui.activities.VoteSummaryActivity"/>
+        <activity android:name=".presentation.ui.activities.ChartActivity"/>
     </application>
 </manifest>

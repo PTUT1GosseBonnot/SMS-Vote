@@ -1,9 +1,9 @@
 package com.example.lpiem.smsvote.presentation.ui.activities
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.support.v7.app.AppCompatActivity
 import com.example.lpiem.smsvote.R
 
 class SplashActivity : AppCompatActivity() {

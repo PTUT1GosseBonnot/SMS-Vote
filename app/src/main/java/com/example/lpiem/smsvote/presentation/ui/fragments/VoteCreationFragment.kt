@@ -3,15 +3,14 @@ package com.example.lpiem.smsvote.presentation.ui.fragments
 import android.Manifest
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.LinearLayout
 import com.example.lpiem.smsvote.R
 import com.example.lpiem.smsvote.base.BaseFragment
-import com.example.lpiem.smsvote.entity.Response
+import com.example.lpiem.smsvote.data.entity.Response
+import com.example.lpiem.smsvote.domain.VoteManager
 import com.example.lpiem.smsvote.presentation.presenter.VoteCreationFragmentPresenter
 import com.example.lpiem.smsvote.presentation.presenter.VoteCretionView
-import com.example.lpiem.smsvote.presentation.ui.activities.VoteCreationActivity
 import com.example.lpiem.smsvote.presentation.ui.activities.VoteSummaryActivity
 import com.example.lpiem.smsvote.presentation.ui.adapter.AnswersAdapter
 import com.example.lpiem.smsvote.utils.PermisionUtil
@@ -23,6 +22,11 @@ class VoteCreationFragment : BaseFragment<VoteCreationFragmentPresenter>(), Vote
     override var presenter: VoteCreationFragmentPresenter = VoteCreationFragmentPresenter()
 
     private val answers: ArrayList<Response> = ArrayList()
+
+    override fun goToSummary() {
+        val intent = Intent(context, VoteSummaryActivity::class.java)
+        startActivity(intent)
+    }
 
     override fun displayLoader() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -41,6 +45,7 @@ class VoteCreationFragment : BaseFragment<VoteCreationFragmentPresenter>(), Vote
         presenter.attach(this)
         PermisionUtil.askForPermission(activity!!, Manifest.permission.RECEIVE_SMS, 15)
         recyclerViewAnswers.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
+        val voteManager: VoteManager = VoteManager.instance
         for (i in 0 until 2) {
             answers.add(Response(answers.size + 1, null))
         }
@@ -58,8 +63,10 @@ class VoteCreationFragment : BaseFragment<VoteCreationFragmentPresenter>(), Vote
             if (answers.none { response ->
                     response.response.isNullOrBlank()
                 } && !questionEditText.text.isNullOrBlank()) {
-                val intent = Intent(context, VoteSummaryActivity::class.java)
-                startActivity(intent)
+                voteManager.setQuestion(questionEditText.text.toString())
+                voteManager.clear()
+                voteManager.addAnswers(answers)
+                goToSummary()
             }
         }
     }

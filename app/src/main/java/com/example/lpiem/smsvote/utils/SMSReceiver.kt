@@ -31,14 +31,6 @@ class SMSReceiver: BroadcastReceiver() {
 
                     val message = currentMessage.displayMessageBody
 
-                    // Show Alert
-                    val duration = Toast.LENGTH_LONG
-                    val toast = Toast.makeText(
-                        context,
-                        "senderNum: $phoneNumber, message: $message", duration
-                    )
-                    toast.show()
-
                     voteManager.smsReceived(phoneNumber, message)
 
                 } // end for loop

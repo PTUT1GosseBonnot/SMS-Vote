@@ -38,6 +38,7 @@ class VoteSummaryFragment: BaseFragment<VoteSummaryFragmentPresenter>(), VoteSum
         presenter.attach(this)
 
         edit_btn.setOnClickListener {
+            voteManager.stopListen()
             activity!!.finish()
         }
 

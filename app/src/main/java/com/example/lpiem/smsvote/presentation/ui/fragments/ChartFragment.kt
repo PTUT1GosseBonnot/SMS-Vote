@@ -60,22 +60,21 @@ class ChartFragment: BaseFragment<ChartFragmentPresenter>(), ChartView {
         mPieChart.setTransparentCircleRadius(10f)
 
         mPieChart.isRotationEnabled = false
+        mPieChart.setDrawSliceText(false)
 
         val legend: Legend? = mPieChart.legend
         legend?.verticalAlignment = Legend.LegendVerticalAlignment.TOP
         legend?.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
         legend?.direction = Legend.LegendDirection.LEFT_TO_RIGHT
         legend?.form = Legend.LegendForm.CIRCLE
-        legend?.isWordWrapEnabled = true
 
 
-        val value = Arrays.asList(1f, 2f, 3f, 9f,15f)
+        val value = Arrays.asList(1f, 0f, 3f, 9f,15f)
         val label = Arrays.asList("1", "ehcfjhvecfdehvuyg", "3","4","5","6")
 
         val entry = ArrayList<PieEntry>()
         for (i in value.indices) {
             entry.add(PieEntry(value.get(i), label.get(i)))
-
         }
 
 
@@ -101,14 +100,15 @@ class ChartFragment: BaseFragment<ChartFragmentPresenter>(), ChartView {
         dataSet.colors = colors
         dataSet.setDrawValues(true)
 
-
         val pieData = PieData(dataSet)
         pieData.setValueFormatter(PercentFormatter())
         pieData.setValueTextSize(10f)
         pieData.setValueTextColor(Color.WHITE)
         pieData.setValueTextColor(Color.BLACK)
         dataSet.valueTextColor = Color.BLACK
+        pieData.setValueTextColor(Color.BLACK)
         mPieChart.setEntryLabelColor(Color.BLUE)
+
 
         mPieChart.data = pieData
     }

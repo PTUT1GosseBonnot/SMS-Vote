@@ -17,8 +17,7 @@ import com.github.mikephil.charting.utils.ColorTemplate
 import kotlinx.android.synthetic.main.chart_fragment.*
 import java.util.*
 
-
-class ChartFragment: BaseFragment<ChartFragmentPresenter>(), ChartView {
+class ChartFragment : BaseFragment<ChartFragmentPresenter>(), ChartView {
     override val layoutId: Int = R.layout.chart_fragment
     override var presenter: ChartFragmentPresenter = ChartFragmentPresenter()
 
@@ -69,8 +68,8 @@ class ChartFragment: BaseFragment<ChartFragmentPresenter>(), ChartView {
         legend?.form = Legend.LegendForm.CIRCLE
 
 
-        val value = Arrays.asList(1f, 0f, 3f, 9f,15f)
-        val label = Arrays.asList("1", "ehcfjhvecfdehvuyg", "3","4","5","6")
+        val value = Arrays.asList(1f, 2f, 3f, 9f, 15f)
+        val label = Arrays.asList("1", "ehcfjhvecfdehvuyg", "3", "4", "5", "6")
 
         val entry = ArrayList<PieEntry>()
         for (i in value.indices) {

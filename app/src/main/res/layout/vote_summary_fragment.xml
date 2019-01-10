@@ -18,7 +18,7 @@
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintTop_toBottomOf="@+id/question"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" android:id="@+id/recyclerViewAnswerSummary"/>
     <LinearLayout
             android:id="@+id/linearLayout"
             android:orientation="horizontal"

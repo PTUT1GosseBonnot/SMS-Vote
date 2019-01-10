@@ -14,4 +14,5 @@
     <string name="playBtnClicked">Le bouton play a été cliqué</string>
     <string name="stopBtnClicked">Le bouton stop a été cliqué</string>
     <string name="answer">Réponse</string>
+    <string name="chartDescription">Résultat du vote : </string>
 </resources>

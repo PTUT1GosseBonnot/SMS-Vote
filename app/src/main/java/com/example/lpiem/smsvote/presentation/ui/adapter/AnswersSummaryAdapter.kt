@@ -9,7 +9,8 @@ import com.example.lpiem.smsvote.data.entity.Response
 import com.example.lpiem.smsvote.domain.VoteManager
 import kotlinx.android.synthetic.main.recycler_view_answer_summary_item.view.*
 
-class AnswersSummaryAdapter(private val answersList: ArrayList<Pair<Int, Pair<Response, Int>>>) : RecyclerView.Adapter<AnswersSummaryAdapter.ViewHolder>() {
+class AnswersSummaryAdapter(private val answersList: ArrayList<Pair<Int, Pair<Response, Int>>>) :
+    RecyclerView.Adapter<AnswersSummaryAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): AnswersSummaryAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.recycler_view_answer_summary_item, parent, false)

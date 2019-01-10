@@ -1,6 +1,7 @@
 package com.example.lpiem.smsvote.presentation.ui.adapter
 
 import android.support.v7.widget.RecyclerView
+import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +9,6 @@ import android.view.ViewGroup
 import com.example.lpiem.smsvote.R
 import com.example.lpiem.smsvote.data.entity.Response
 import kotlinx.android.synthetic.main.recycler_view_answer_item.view.*
-import android.text.Editable
-import android.util.Log
-import android.widget.EditText
 
 
 class AnswersAdapter(private val answersList: ArrayList<Response>) : RecyclerView.Adapter<AnswersAdapter.ViewHolder>() {

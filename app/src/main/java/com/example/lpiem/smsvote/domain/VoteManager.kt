@@ -38,7 +38,7 @@ class VoteManager {
     fun addResponse(id: Int) {
         if (id >= 1 && id <= vote.responses.size) {
             vote.responses[id - 1] = vote.responses[id - 1].copy(second = vote.responses[id - 1].second.plus(1))
-            numberOfSmsReceived ++
+            numberOfSmsReceived++
             adapter?.notifyDataSetChanged()
         }
     }

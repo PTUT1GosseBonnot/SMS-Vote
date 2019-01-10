@@ -8,7 +8,6 @@ import android.widget.LinearLayout
 import com.example.lpiem.smsvote.R
 import com.example.lpiem.smsvote.base.BaseFragment
 import com.example.lpiem.smsvote.data.entity.Response
-import com.example.lpiem.smsvote.data.entity.Vote
 import com.example.lpiem.smsvote.domain.VoteManager
 import com.example.lpiem.smsvote.presentation.presenter.VoteCreationFragmentPresenter
 import com.example.lpiem.smsvote.presentation.presenter.VoteCretionView

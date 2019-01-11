@@ -45,7 +45,7 @@ class VoteSummaryFragment : BaseFragment<VoteSummaryFragmentPresenter>(), VoteSu
 
 
         edit_btn.setOnClickListener {
-            activity!!.finish()
+            activity?.finish()
         }
 
         play_btn.setOnClickListener {
@@ -68,6 +68,7 @@ class VoteSummaryFragment : BaseFragment<VoteSummaryFragmentPresenter>(), VoteSu
                     voteManager.detachFragment()
                     val intent = Intent(context, ChartActivity::class.java)
                     startActivity(intent)
+                    activity?.finish()
                 }
                 .setNegativeButton(R.string.alertStopNegativeButton) { dialog, _ ->
                     dialog.cancel()

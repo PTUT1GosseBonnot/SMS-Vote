@@ -18,4 +18,5 @@ class ChartActivity : AppCompatActivity() {
                 .commit()
         }
     }
+
 }

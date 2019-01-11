@@ -6,11 +6,10 @@ import android.content.Intent
 import android.telephony.SmsManager
 import android.telephony.SmsMessage
 import android.util.Log
-import android.widget.Toast
 import com.example.lpiem.smsvote.domain.VoteManager
 
 
-class SMSReceiver: BroadcastReceiver() {
+class SMSReceiver : BroadcastReceiver() {
 
     val sms = SmsManager.getDefault()
     val voteManager: VoteManager = VoteManager.instance

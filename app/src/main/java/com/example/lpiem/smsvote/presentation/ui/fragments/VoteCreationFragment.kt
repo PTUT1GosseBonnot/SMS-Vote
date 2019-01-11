@@ -59,7 +59,7 @@ class VoteCreationFragment : BaseFragment<VoteCreationFragmentPresenter>(), Vote
                 answers.add(Response(answers.size + 1, null))
                 adapter.notifyDataSetChanged()
             } else {
-                Toast.makeText(context,R.string.mustFillAllAnswers,Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.mustFillAllAnswers, Toast.LENGTH_SHORT).show()
             }
         }
         validateButton.setOnClickListener {

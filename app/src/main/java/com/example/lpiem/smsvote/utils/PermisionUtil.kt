@@ -1,7 +1,6 @@
 package com.example.lpiem.smsvote.utils
 
 import android.app.Activity
-import android.content.DialogInterface
 import android.content.pm.PackageManager
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
@@ -21,7 +20,8 @@ class PermisionUtil {
                     val builder = AlertDialog.Builder(context)
                     builder.setTitle(R.string.missingPermissions)
                         .setMessage(R.string.allowAddPermissionsSMS)
-                        .setPositiveButton(R.string.allow
+                        .setPositiveButton(
+                            R.string.allow
                         ) { _, _ ->
                             ActivityCompat.requestPermissions(
                                 context,

@@ -47,9 +47,8 @@ class ChartFragment : BaseFragment<ChartFragmentPresenter>(), ChartView {
 
         chartTitle.text = getString(R.string.chartDescription, voteManager.vote.question)
         chartTitle.textSize = 20f
-
-
     }
+
 
     fun setupPieChartView() {
         mPieChart = activity!!.findViewById(R.id.piechart)

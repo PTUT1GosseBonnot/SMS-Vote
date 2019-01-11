@@ -1,7 +1,6 @@
 package com.example.lpiem.smsvote.presentation.ui.fragments
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -65,9 +64,9 @@ class VoteSummaryFragment : BaseFragment<VoteSummaryFragmentPresenter>(), VoteSu
             alertDialogBuilder.setMessage(R.string.alertStopMessage)
                 .setCancelable(false)
                 .setPositiveButton(R.string.alertStopPositiveButton) { _, _ ->
-            voteManager.detachAdapter()
-            voteManager.detachFragment()
-            val intent = Intent(context, ChartActivity::class.java)
+                    voteManager.detachAdapter()
+                    voteManager.detachFragment()
+                    val intent = Intent(context, ChartActivity::class.java)
                     startActivity(intent)
                 }
                 .setNegativeButton(R.string.alertStopNegativeButton) { dialog, _ ->
@@ -80,7 +79,7 @@ class VoteSummaryFragment : BaseFragment<VoteSummaryFragmentPresenter>(), VoteSu
         question.text = voteManager.vote.question
         textViewNumberOfResponse.text = getString(R.string.numberOfResponse, voteManager.numberOfSmsReceived.toString())
 
-            question.text = voteManager.vote.question
+        question.text = voteManager.vote.question
 
         recyclerViewAnswerSummary.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
         for (i in 0 until voteManager.vote.responses.size) {

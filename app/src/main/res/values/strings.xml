@@ -16,4 +16,10 @@
     <string name="answer">Réponse</string>
     <string name="chartDescription">Résultat du vote : %s</string>
     <string name="numberOfResponse">Nombre de réponses: %s</string>
+    <string name="mustFillAllAnswers">Vous devez remplir toutes les réponses disponibles avant d\'en rajouter une</string>
+    <string name="mustFillAllFields">Vous devez remplir la question et toutes les réponses possibles avant de valider</string>
+    <string name="alertStopTitle">Arrêt de l\'enregistrement</string>
+    <string name="alertStopMessage">Voulez-vous vraiment arrêter l\'enregistrement des réponses du vote ?</string>
+    <string name="alertStopPositiveButton">Oui, arrêter</string>
+    <string name="alertStopNegativeButton">Non</string>
 </resources>

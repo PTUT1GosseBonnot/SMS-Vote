@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.LinearLayout
+import android.widget.Toast
 import com.example.lpiem.smsvote.R
 import com.example.lpiem.smsvote.base.BaseFragment
 import com.example.lpiem.smsvote.data.entity.Response
@@ -57,6 +58,8 @@ class VoteCreationFragment : BaseFragment<VoteCreationFragmentPresenter>(), Vote
                 }) {
                 answers.add(Response(answers.size + 1, null))
                 adapter.notifyDataSetChanged()
+            } else {
+                Toast.makeText(context, R.string.mustFillAllAnswers, Toast.LENGTH_SHORT).show()
             }
         }
         validateButton.setOnClickListener {
@@ -67,6 +70,8 @@ class VoteCreationFragment : BaseFragment<VoteCreationFragmentPresenter>(), Vote
                 voteManager.clear()
                 voteManager.addAnswers(answers)
                 goToSummary()
+            } else {
+                Toast.makeText(context, R.string.mustFillAllFields, Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -3,6 +3,7 @@ package com.example.lpiem.smsvote.domain
 import com.example.lpiem.smsvote.data.entity.Response
 import com.example.lpiem.smsvote.data.entity.Vote
 import com.example.lpiem.smsvote.presentation.ui.adapter.AnswersSummaryAdapter
+import com.example.lpiem.smsvote.presentation.ui.fragments.VoteSummaryFragment
 
 class VoteManager {
 
@@ -11,6 +12,7 @@ class VoteManager {
     var numberOfSmsReceived: Int = 0
     var listening: Boolean = false
     var adapter: AnswersSummaryAdapter? = null
+    var fragment: VoteSummaryFragment? = null
 
 
     fun setQuestion(question: String) {
@@ -40,6 +42,7 @@ class VoteManager {
             vote.responses[id - 1] = vote.responses[id - 1].copy(second = vote.responses[id - 1].second.plus(1))
             numberOfSmsReceived++
             adapter?.notifyDataSetChanged()
+            fragment?.notifySmsReceived()
         }
     }
 
@@ -56,6 +59,18 @@ class VoteManager {
 
     fun attachAdapter(adapter: AnswersSummaryAdapter) {
         this.adapter = adapter
+    }
+
+    fun attachFragment(fragment: VoteSummaryFragment) {
+        this.fragment = fragment
+    }
+
+    fun detachAdapter() {
+        this.adapter = null
+    }
+
+    fun detachFragment() {
+        this.fragment = null
     }
 
     companion object {

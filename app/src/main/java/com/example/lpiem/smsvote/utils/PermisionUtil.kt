@@ -11,7 +11,8 @@ import com.example.lpiem.smsvote.R
 class PermisionUtil {
 
     companion object {
-        fun askForPermission(context: Activity, permission: String, requestCode: Int?) {
+
+        fun askForSMSPermission(context: Activity, permission: String, requestCode: Int?) {
             if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
 
                 // Should we show an explanation?
@@ -29,6 +30,7 @@ class PermisionUtil {
                                 requestCode!!
                             )
                         }
+                        .setCancelable(false)
                     builder.show()
 
 
@@ -38,6 +40,33 @@ class PermisionUtil {
                 }
             }
         }
+
+        fun askForPhoneStatePermission(context: Activity, permission: String, requestCode: Int?) {
+            if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+
+                // Should we show an explanation?
+                if (ActivityCompat.shouldShowRequestPermissionRationale(context, permission)) {
+
+                    val builder = AlertDialog.Builder(context)
+                    builder.setTitle(R.string.missingPermissions)
+                        .setMessage(R.string.allowedPermissionsPhoneState)
+                        .setPositiveButton(
+                            R.string.allow
+                        ) { _, _ ->
+                            ActivityCompat.requestPermissions(
+                                context,
+                                arrayOf(permission),
+                                requestCode!!
+                            )
+                        }
+                        .setCancelable(false)
+                    builder.show()
+                } else {
+                    ActivityCompat.requestPermissions(context, arrayOf(permission), requestCode!!)
+                }
+            }
+        }
+
     }
 
 }

@@ -44,7 +44,8 @@ class VoteCreationFragment : BaseFragment<VoteCreationFragmentPresenter>(), Vote
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         presenter.attach(this)
-        PermisionUtil.askForPermission(activity!!, Manifest.permission.RECEIVE_SMS, 15)
+        PermisionUtil.askForSMSPermission(activity!!, Manifest.permission.RECEIVE_SMS, 15)
+        PermisionUtil.askForPhoneStatePermission(activity!!, Manifest.permission.READ_PHONE_STATE, 30)
         recyclerViewAnswers.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
         val voteManager: VoteManager = VoteManager.instance
         for (i in 0 until 2) {

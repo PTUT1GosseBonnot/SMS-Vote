@@ -8,7 +8,7 @@ import com.example.lpiem.smsvote.presentation.ui.fragments.VoteSummaryFragment
 class VoteManager {
 
     val vote: Vote = Vote(null, ArrayList<Pair<Response, Int>>())
-    val smsNumberAlreadyVote: ArrayList<String> = ArrayList()
+    private val smsNumberAlreadyVote: ArrayList<String> = ArrayList()
     var numberOfSmsReceived: Int = 0
     var listening: Boolean = false
     var adapter: AnswersSummaryAdapter? = null

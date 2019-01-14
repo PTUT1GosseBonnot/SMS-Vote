@@ -22,4 +22,5 @@
     <string name="alertStopMessage">Voulez-vous vraiment arrêter l\'enregistrement des réponses du vote ?</string>
     <string name="alertStopPositiveButton">Oui, arrêter</string>
     <string name="alertStopNegativeButton">Non</string>
+    <string name="allowedPermissionsPhoneState">Nous avons besoin d\'accéder à l\'état du téléphone.</string>
 </resources>

@@ -67,6 +67,13 @@ class PermisionUtil {
             }
         }
 
+        fun onRequestPermissionsResult(context: Activity, requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+            when (requestCode) {
+                15 -> askForSMSPermission(context, permissions[0], requestCode)
+                30 -> askForPhoneStatePermission(context, permissions[0], requestCode)
+            }
+        }
+
     }
 
 }

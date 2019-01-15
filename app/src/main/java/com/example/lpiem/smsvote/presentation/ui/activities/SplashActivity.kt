@@ -21,6 +21,11 @@ class SplashActivity : AppCompatActivity() {
 
             PermisionUtil.askForSMSPermission(this, Manifest.permission.RECEIVE_SMS, 15)
             PermisionUtil.askForPhoneStatePermission(this, Manifest.permission.READ_PHONE_STATE, 30)
+            if (checkAllPermissionsGranted()) {
+                val intent = Intent(applicationContext, VoteCreationActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
     }
 

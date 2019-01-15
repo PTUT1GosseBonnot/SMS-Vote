@@ -1,5 +1,6 @@
 package com.example.lpiem.smsvote.utils
 
+import android.Manifest
 import android.app.Activity
 import android.content.pm.PackageManager
 import android.support.v4.app.ActivityCompat
@@ -39,6 +40,7 @@ class PermisionUtil {
                     ActivityCompat.requestPermissions(context, arrayOf(permission), requestCode!!)
                 }
             }
+            askForPhoneStatePermission(context, Manifest.permission.READ_PHONE_STATE, 30)
         }
 
         fun askForPhoneStatePermission(context: Activity, permission: String, requestCode: Int?) {

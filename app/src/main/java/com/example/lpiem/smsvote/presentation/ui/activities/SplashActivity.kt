@@ -19,8 +19,12 @@ class SplashActivity : AppCompatActivity() {
     internal val mRunnable: Runnable = Runnable {
         if (!isFinishing) {
 
-            PermisionUtil.askForSMSPermission(this, Manifest.permission.RECEIVE_SMS, 15)
-            PermisionUtil.askForPhoneStatePermission(this, Manifest.permission.READ_PHONE_STATE, 30)
+            if (!checkSMSPermission()) {
+                PermisionUtil.askForSMSPermission(this, Manifest.permission.RECEIVE_SMS, 15)
+            }
+            if (!checkPhoneStatePermission()) {
+                PermisionUtil.askForPhoneStatePermission(this, Manifest.permission.READ_PHONE_STATE, 30)
+            }
             if (checkAllPermissionsGranted()) {
                 val intent = Intent(applicationContext, VoteCreationActivity::class.java)
                 startActivity(intent)
@@ -69,5 +73,13 @@ class SplashActivity : AppCompatActivity() {
     fun checkAllPermissionsGranted(): Boolean {
         return (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS) == PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED)
+    }
+
+    fun checkSMSPermission(): Boolean {
+        return (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS) == PackageManager.PERMISSION_GRANTED)
+    }
+
+    fun checkPhoneStatePermission(): Boolean {
+        return (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED)
     }
 }

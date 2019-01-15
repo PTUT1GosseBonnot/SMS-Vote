@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.example.lpiem.smsvote.R
 import com.example.lpiem.smsvote.utils.PermisionUtil
+import com.parse.ParseInstallation
 import java.security.Permission
 
 class SplashActivity : AppCompatActivity() {
@@ -42,6 +43,8 @@ class SplashActivity : AppCompatActivity() {
 
         //Navigate with delay
         mDelayHandler!!.postDelayed(mRunnable, SPLASH_DELAY)
+
+        ParseInstallation.getCurrentInstallation().saveInBackground()
 
     }
 

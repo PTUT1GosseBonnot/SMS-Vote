@@ -13,7 +13,7 @@ class ParseDatabase {
             if (e == null) {
                 VoteListFragment().showList(voteList)
             } else {
-                VoteListFragment().showToastError()
+                //VoteListFragment().showToastError()
             }
         }
 

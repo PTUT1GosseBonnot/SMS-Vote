@@ -1,6 +1,7 @@
 package com.example.lpiem.smsvote.presentation.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.example.lpiem.smsvote.R
 import com.example.lpiem.smsvote.base.BaseFragment
@@ -8,6 +9,11 @@ import com.example.lpiem.smsvote.data.entity.ParseVote
 import com.example.lpiem.smsvote.data.network.ParseDatabase
 import com.example.lpiem.smsvote.presentation.presenter.VoteListFragmentPresenter
 import com.example.lpiem.smsvote.presentation.presenter.VoteListView
+import com.parse.ParseException
+import com.parse.ParseQuery
+import com.parse.ParseObject
+
+
 
 class VoteListFragment : BaseFragment<VoteListFragmentPresenter>(), VoteListView {
 
@@ -30,14 +36,38 @@ class VoteListFragment : BaseFragment<VoteListFragmentPresenter>(), VoteListView
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         presenter.attach(this)
-        ParseDatabase().getAllVotesFromParse()
+
+
+        val testObject = ParseObject("TestObject")
+
+        testObject.put("foo", "bar")
+
+        testObject.saveInBackground()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        showList()
+    }
+
+    fun showList() {
+        var query: ParseQuery<ParseVote> = ParseVote.getQuery()
+
+        query.findInBackground { voteList, e ->
+            Log.d("RACLETTE", "test")
+            if (e == null) {
+                Toast.makeText(context, voteList[0].getVote(), Toast.LENGTH_LONG).show()
+            } else {
+                showToastError(e)
+            }
+        }
     }
 
     override fun showList(list: List<ParseVote>) {
-        Toast.makeText(context, list.toString(), Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
     }
 
-    fun showToastError() {
-        Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+    fun showToastError(error: ParseException) {
+        Toast.makeText(context, error.localizedMessage, Toast.LENGTH_SHORT).show()
     }
 }

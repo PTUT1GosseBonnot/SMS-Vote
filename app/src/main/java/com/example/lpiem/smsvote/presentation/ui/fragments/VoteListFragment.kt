@@ -54,7 +54,6 @@ class VoteListFragment : BaseFragment<VoteListFragmentPresenter>(), VoteListView
         var query: ParseQuery<ParseVote> = ParseVote.getQuery()
 
         query.findInBackground { voteList, e ->
-            Log.d("RACLETTE", "test")
             if (e == null) {
                 Toast.makeText(context, voteList[0].getVote(), Toast.LENGTH_LONG).show()
             } else {

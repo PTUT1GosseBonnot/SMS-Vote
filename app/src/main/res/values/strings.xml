@@ -1,4 +1,7 @@
 <resources>
+    <string name="server_url">https://bigoud.games/smsvote/</string>
+    <string name="app_id">1915484469352</string>
+    <string name="client_key">195951</string>
     <string name="app_name">SMSVote</string>
     <string name="missingPermissions">Autorisations manquantes</string>
     <string name="allowAddPermissionsSMS">Nous avons besoin d\’accéder aux SMS de l\’appareil. Vous ne pouvez pas continuer sans…</string>

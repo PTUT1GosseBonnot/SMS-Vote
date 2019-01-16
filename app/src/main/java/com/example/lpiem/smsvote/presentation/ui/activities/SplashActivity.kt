@@ -18,9 +18,12 @@ class SplashActivity : AppCompatActivity() {
 
     internal val mRunnable: Runnable = Runnable {
         if (!isFinishing) {
+            val intent = Intent(applicationContext, VoteCreationActivity::class.java)
+            startActivity(intent)
+            finish()
 
-            PermisionUtil.askForSMSPermission(this, Manifest.permission.RECEIVE_SMS, 15)
-            PermisionUtil.askForPhoneStatePermission(this, Manifest.permission.READ_PHONE_STATE, 30)
+            //PermisionUtil.askForSMSPermission(this, Manifest.permission.RECEIVE_SMS, 15)
+            //PermisionUtil.askForPhoneStatePermission(this, Manifest.permission.READ_PHONE_STATE, 30)
         }
     }
 
@@ -53,11 +56,11 @@ class SplashActivity : AppCompatActivity() {
                 PermisionUtil.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
             }
         }
-        if (checkAllPermissionsGranted()) {
+        //if (checkAllPermissionsGranted()) {
             val intent = Intent(applicationContext, VoteCreationActivity::class.java)
             startActivity(intent)
             finish()
-        }
+        //}
 
     }
 

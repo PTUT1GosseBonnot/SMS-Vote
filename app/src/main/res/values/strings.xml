@@ -26,4 +26,6 @@
     <string name="alertStopPositiveButton">Oui, arrêter</string>
     <string name="alertStopNegativeButton">Non</string>
     <string name="allowedPermissionsPhoneState">Nous avons besoin d\'accéder à l\'état du téléphone.</string>
+    <string name="saveCsvFailed">La sauvegarde CSV du vote a échouée</string>
+    <string name="saveCsvSuccess">La sauvegarde CSV a été réalisée avec succès.\nVous pouvez retrouver le fichier dans le stockage de l\'appareil</string>
 </resources>

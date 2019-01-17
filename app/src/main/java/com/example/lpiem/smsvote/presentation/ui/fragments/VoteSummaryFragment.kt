@@ -47,9 +47,6 @@ class VoteSummaryFragment : BaseFragment<VoteSummaryFragmentPresenter>(), VoteSu
 
 
         edit_btn.setOnClickListener {
-            //activity?.finish()
-            val intent = Intent(context, VoteListActivity::class.java)
-            startActivity(intent)
             activity?.finish()
         }
 

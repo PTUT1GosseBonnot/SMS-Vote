@@ -45,16 +45,17 @@ class ChartFragment : BaseFragment<ChartFragmentPresenter>(), ChartView {
 
         setupPieChartView()
 
-        chartTitle.text = getString(R.string.chartDescription) + voteManager.vote.question
+        chartTitle.text = getString(R.string.chartDescription, voteManager.vote.question)
         chartTitle.textSize = 20f
-
-
     }
+
 
     fun setupPieChartView() {
         mPieChart = activity!!.findViewById(R.id.piechart)
 
         mPieChart.setUsePercentValues(false)
+
+        mPieChart.description.isEnabled = false
 
         mPieChart.isDrawHoleEnabled = true
         mPieChart.holeRadius = 7f

@@ -2,9 +2,13 @@ package com.example.lpiem.smsvote.presentation.ui.fragments
 
 import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.widget.LinearLayout
+import android.widget.Toast
 import com.example.lpiem.smsvote.R
 import com.example.lpiem.smsvote.base.BaseFragment
 import com.example.lpiem.smsvote.data.entity.Response
@@ -43,7 +47,6 @@ class VoteCreationFragment : BaseFragment<VoteCreationFragmentPresenter>(), Vote
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         presenter.attach(this)
-        PermisionUtil.askForPermission(activity!!, Manifest.permission.RECEIVE_SMS, 15)
         recyclerViewAnswers.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
         val voteManager: VoteManager = VoteManager.instance
         for (i in 0 until 2) {
@@ -57,6 +60,8 @@ class VoteCreationFragment : BaseFragment<VoteCreationFragmentPresenter>(), Vote
                 }) {
                 answers.add(Response(answers.size + 1, null))
                 adapter.notifyDataSetChanged()
+            } else {
+                Toast.makeText(context, R.string.mustFillAllAnswers, Toast.LENGTH_SHORT).show()
             }
         }
         validateButton.setOnClickListener {
@@ -67,6 +72,8 @@ class VoteCreationFragment : BaseFragment<VoteCreationFragmentPresenter>(), Vote
                 voteManager.clear()
                 voteManager.addAnswers(answers)
                 goToSummary()
+            } else {
+                Toast.makeText(context, R.string.mustFillAllFields, Toast.LENGTH_SHORT).show()
             }
         }
     }

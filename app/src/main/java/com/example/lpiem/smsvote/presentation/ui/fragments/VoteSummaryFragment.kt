@@ -66,12 +66,13 @@ class VoteSummaryFragment : BaseFragment<VoteSummaryFragmentPresenter>(), VoteSu
             alertDialogBuilder.setMessage(R.string.alertStopMessage)
                 .setCancelable(false)
                 .setPositiveButton(R.string.alertStopPositiveButton) { _, _ ->
+                    voteManager.uploadToParse(activity!!.applicationContext)
                     voteManager.detachAdapter()
                     voteManager.detachFragment()
+                    OpenCSVWriter(context).createCSV()
                     val intent = Intent(context, ChartActivity::class.java)
                     startActivity(intent)
                     activity?.finish()
-                    OpenCSVWriter(context).createCSV()
                 }
                 .setNegativeButton(R.string.alertStopNegativeButton) { dialog, _ ->
                     dialog.cancel()

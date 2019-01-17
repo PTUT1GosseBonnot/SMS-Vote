@@ -12,6 +12,6 @@ class ChartValueFormatter: IValueFormatter {
         dataSetIndex: Int,
         viewPortHandler: ViewPortHandler?
     ): String {
-        return "" + value as Int
+        return "" + value.toInt()
     }
 }

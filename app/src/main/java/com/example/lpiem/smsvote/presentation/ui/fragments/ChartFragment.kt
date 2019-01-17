@@ -8,6 +8,7 @@ import com.example.lpiem.smsvote.base.BaseFragment
 import com.example.lpiem.smsvote.domain.VoteManager
 import com.example.lpiem.smsvote.presentation.presenter.ChartFragmentPresenter
 import com.example.lpiem.smsvote.presentation.presenter.ChartView
+import com.example.lpiem.smsvote.utils.ChartValueFormatter
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
@@ -107,7 +108,7 @@ class ChartFragment : BaseFragment<ChartFragmentPresenter>(), ChartView {
         dataSet.setDrawValues(true)
 
         val pieData = PieData(dataSet)
-        pieData.setValueFormatter(PercentFormatter())
+        pieData.setValueFormatter(ChartValueFormatter())
         pieData.setValueTextSize(10f)
         pieData.setValueTextColor(Color.WHITE)
         pieData.setValueTextColor(Color.BLACK)

@@ -69,7 +69,7 @@ class VoteSummaryFragment : BaseFragment<VoteSummaryFragmentPresenter>(), VoteSu
                     voteManager.uploadToParse(activity!!.applicationContext)
                     voteManager.detachAdapter()
                     voteManager.detachFragment()
-                    OpenCSVWriter().createCSV()
+                    OpenCSVWriter(context).createCSV()
                     val intent = Intent(context, ChartActivity::class.java)
                     startActivity(intent)
                     activity?.finish()

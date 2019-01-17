@@ -28,7 +28,7 @@ class SMSReceiver : BroadcastReceiver() {
                     val currentMessage = SmsMessage.createFromPdu(pdusObj[i] as ByteArray)
                     val phoneNumber = currentMessage.displayOriginatingAddress
 
-                    val message = currentMessage.displayMessageBody
+                    val message = currentMessage.displayMessageBody.replace("\\s".toRegex(), "")
 
                     voteManager.smsReceived(phoneNumber, message)
 

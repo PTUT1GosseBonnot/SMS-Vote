@@ -1,9 +1,15 @@
 package com.example.lpiem.smsvote.domain
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Context.TELEPHONY_SERVICE
+import android.telephony.TelephonyManager
 import com.example.lpiem.smsvote.data.entity.Response
 import com.example.lpiem.smsvote.data.entity.Vote
 import com.example.lpiem.smsvote.presentation.ui.adapter.AnswersSummaryAdapter
 import com.example.lpiem.smsvote.presentation.ui.fragments.VoteSummaryFragment
+import com.parse.ParseObject
+
 
 class VoteManager {
 
@@ -71,6 +77,33 @@ class VoteManager {
 
     fun detachFragment() {
         this.fragment = null
+    }
+
+    fun uploadToParse(context: Context) {
+
+        val parseVote = ParseObject.create("Vote")
+        parseVote.put("vote", vote.question!!)
+        parseVote.put("totalOfResponses", numberOfSmsReceived)
+        parseVote.put("phoneNumber", getPhoneNumber(context))
+        parseVote.saveInBackground {
+            for (response in vote.responses) {
+                val parseResponse = ParseObject.create("Response")
+                parseResponse.put("response", response.first.response!!)
+                parseResponse.put("numberOfResponses", response.second)
+                parseResponse.saveInBackground {
+                    val parseVoteResponse = ParseObject.create("VoteResponse")
+                    parseVoteResponse.put("vote", parseVote.objectId)
+                    parseVoteResponse.put("response", parseResponse.objectId)
+                    parseVoteResponse.saveInBackground()
+                }
+            }
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    fun getPhoneNumber(context: Context): String {
+        return (context.getSystemService(TELEPHONY_SERVICE) as TelephonyManager)
+            .deviceId
     }
 
     companion object {

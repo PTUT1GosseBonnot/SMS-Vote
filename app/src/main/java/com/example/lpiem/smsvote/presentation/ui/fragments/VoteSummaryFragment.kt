@@ -13,6 +13,7 @@ import com.example.lpiem.smsvote.domain.VoteManager
 import com.example.lpiem.smsvote.presentation.presenter.VoteSummaryFragmentPresenter
 import com.example.lpiem.smsvote.presentation.presenter.VoteSummaryView
 import com.example.lpiem.smsvote.presentation.ui.activities.ChartActivity
+import com.example.lpiem.smsvote.presentation.ui.activities.VoteListActivity
 import com.example.lpiem.smsvote.presentation.ui.adapter.AnswersSummaryAdapter
 import kotlinx.android.synthetic.main.vote_summary_fragment.*
 
@@ -45,6 +46,9 @@ class VoteSummaryFragment : BaseFragment<VoteSummaryFragmentPresenter>(), VoteSu
 
 
         edit_btn.setOnClickListener {
+            //activity?.finish()
+            val intent = Intent(context, VoteListActivity::class.java)
+            startActivity(intent)
             activity?.finish()
         }
 

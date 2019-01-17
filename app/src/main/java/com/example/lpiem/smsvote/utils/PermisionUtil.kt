@@ -1,6 +1,8 @@
 package com.example.lpiem.smsvote.utils
 
+import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.pm.PackageManager
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
@@ -11,6 +13,17 @@ import com.example.lpiem.smsvote.R
 class PermisionUtil {
 
     companion object {
+
+        fun hasPermissions(context: Context?, vararg permissions: String): Boolean {
+            if (context != null) {
+                for (permission in permissions) {
+                    if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                        return false
+                    }
+                }
+            }
+            return true
+        }
 
         fun askForSMSPermission(context: Activity, permission: String, requestCode: Int?) {
             if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
@@ -39,6 +52,7 @@ class PermisionUtil {
                     ActivityCompat.requestPermissions(context, arrayOf(permission), requestCode!!)
                 }
             }
+            askForPhoneStatePermission(context, Manifest.permission.READ_PHONE_STATE, 30)
         }
 
         fun askForPhoneStatePermission(context: Activity, permission: String, requestCode: Int?) {

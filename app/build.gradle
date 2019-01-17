@@ -37,6 +37,8 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.android.support:cardview-v7:28.0.0'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
+    implementation 'com.parse.bolts:bolts-android:1.4.0'
     implementation 'com.github.parse-community.Parse-SDK-Android:parse:1.18.5'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1' // for logging API calls to LogCat
     implementation 'com.opencsv:opencsv:4.0'
 }

@@ -15,6 +15,7 @@ import com.example.lpiem.smsvote.presentation.presenter.VoteSummaryView
 import com.example.lpiem.smsvote.presentation.ui.activities.ChartActivity
 import com.example.lpiem.smsvote.presentation.ui.activities.VoteListActivity
 import com.example.lpiem.smsvote.presentation.ui.adapter.AnswersSummaryAdapter
+import com.example.lpiem.smsvote.utils.OpenCSVWriter
 import kotlinx.android.synthetic.main.vote_summary_fragment.*
 
 class VoteSummaryFragment : BaseFragment<VoteSummaryFragmentPresenter>(), VoteSummaryView {
@@ -73,6 +74,7 @@ class VoteSummaryFragment : BaseFragment<VoteSummaryFragmentPresenter>(), VoteSu
                     val intent = Intent(context, ChartActivity::class.java)
                     startActivity(intent)
                     activity?.finish()
+                    OpenCSVWriter().createCSV()
                 }
                 .setNegativeButton(R.string.alertStopNegativeButton) { dialog, _ ->
                     dialog.cancel()

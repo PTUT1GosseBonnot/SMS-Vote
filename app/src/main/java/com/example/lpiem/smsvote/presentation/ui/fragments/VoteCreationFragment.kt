@@ -1,12 +1,8 @@
 package com.example.lpiem.smsvote.presentation.ui.fragments
 
-import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.widget.LinearLayout
 import android.widget.Toast
 import com.example.lpiem.smsvote.R
@@ -17,7 +13,7 @@ import com.example.lpiem.smsvote.presentation.presenter.VoteCreationFragmentPres
 import com.example.lpiem.smsvote.presentation.presenter.VoteCretionView
 import com.example.lpiem.smsvote.presentation.ui.activities.VoteSummaryActivity
 import com.example.lpiem.smsvote.presentation.ui.adapter.AnswersAdapter
-import com.example.lpiem.smsvote.utils.PermisionUtil
+import com.parse.ParseInstallation
 import kotlinx.android.synthetic.main.vote_creation_fragment.*
 
 class VoteCreationFragment : BaseFragment<VoteCreationFragmentPresenter>(), VoteCretionView {
@@ -47,6 +43,7 @@ class VoteCreationFragment : BaseFragment<VoteCreationFragmentPresenter>(), Vote
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         presenter.attach(this)
+
         recyclerViewAnswers.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
         val voteManager: VoteManager = VoteManager.instance
         for (i in 0 until 2) {

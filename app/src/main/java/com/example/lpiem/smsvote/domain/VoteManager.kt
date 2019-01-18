@@ -92,8 +92,8 @@ class VoteManager {
                 parseResponse.put("numberOfResponses", response.second)
                 parseResponse.saveInBackground {
                     val parseVoteResponse = ParseObject.create("VoteResponse")
-                    parseVoteResponse.put("vote", parseVote.objectId)
-                    parseVoteResponse.put("response", parseResponse.objectId)
+                    parseVoteResponse.put("vote", parseVote)
+                    parseVoteResponse.put("response", parseResponse)
                     parseVoteResponse.saveInBackground()
                 }
             }

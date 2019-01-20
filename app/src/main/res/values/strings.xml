@@ -28,4 +28,5 @@
     <string name="allowedPermissionsPhoneState">Nous avons besoin d\'accéder à l\'état du téléphone.</string>
     <string name="saveCsvFailed">La sauvegarde CSV du vote a échouée</string>
     <string name="saveCsvSuccess">La sauvegarde CSV a été réalisée avec succès.\nVous pouvez retrouver le fichier dans le stockage de l\'appareil</string>
+    <string name="imeiNumber">Voici votre identifiant pour le site https://bigoud.games/SMSVote/ : %s</string>
 </resources>

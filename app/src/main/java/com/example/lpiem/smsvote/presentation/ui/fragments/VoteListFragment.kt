@@ -36,13 +36,6 @@ class VoteListFragment : BaseFragment<VoteListFragmentPresenter>(), VoteListView
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         presenter.attach(this)
-
-
-        val testObject = ParseObject("TestObject")
-
-        testObject.put("foo", "bar")
-
-        testObject.saveInBackground()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

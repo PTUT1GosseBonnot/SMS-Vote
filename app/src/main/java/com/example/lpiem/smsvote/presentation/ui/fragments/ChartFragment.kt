@@ -2,6 +2,9 @@ package com.example.lpiem.smsvote.presentation.ui.fragments
 
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Html
+import android.text.method.LinkMovementMethod
+import android.text.util.Linkify
 import android.widget.RelativeLayout
 import com.example.lpiem.smsvote.R
 import com.example.lpiem.smsvote.base.BaseFragment
@@ -25,7 +28,6 @@ class ChartFragment : BaseFragment<ChartFragmentPresenter>(), ChartView {
     val voteManager: VoteManager = VoteManager.instance
 
     private lateinit var mPieChart: PieChart
-    private lateinit var mainLayout: RelativeLayout
 
     override fun displayLoader() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -42,12 +44,13 @@ class ChartFragment : BaseFragment<ChartFragmentPresenter>(), ChartView {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         presenter.attach(this)
-        mainLayout = activity!!.findViewById(R.id.main)
 
         setupPieChartView()
 
         chartTitle.text = getString(R.string.chartDescription, voteManager.vote.question)
         chartTitle.textSize = 20f
+
+        imeiNumber.text = getString(R.string.imeiNumber, voteManager.getPhoneNumber(activity!!))
     }
 
 
